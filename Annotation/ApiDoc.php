@@ -164,6 +164,11 @@ class ApiDoc
      */
     private $tags = array();
 
+    /**
+     * @var boolean
+     */
+    private $log = false;
+
     public function __construct(array $data)
     {
         $this->resource = !empty($data['resource']) ? $data['resource'] : false;
@@ -703,6 +708,7 @@ class ApiDoc
         $data['authentication'] = $this->authentication;
         $data['authenticationRoles'] = $this->authenticationRoles;
         $data['deprecated'] = $this->deprecated;
+        $data['log'] = $this->log;
 
         return $data;
     }
@@ -746,5 +752,21 @@ class ApiDoc
         if ($statusCode == 200 && $this->response !== $model) {
             $this->response = $model;
         }
+    }
+
+    /**
+     * @return boolean
+     */
+    public function getLog()
+    {
+        return $this->log;
+    }
+
+    /**
+     * @param boolean $log
+     */
+    public function setLog($log)
+    {
+        $this->log = $log;
     }
 }
